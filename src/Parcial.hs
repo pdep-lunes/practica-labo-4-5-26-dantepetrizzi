@@ -43,14 +43,14 @@ listaextravagante = ["dalmata","pomerania"]
 ponerEn100EnergiaYRegalarJuguete :: Perro -> Perro
 ponerEn100EnergiaYRegalarJuguete unperro = unperro {
 energia = 100,
-juguetesFavorito =  unperro { juguetesFavorito = juguetesFavorito unperro ++ "peine de goma" }
+juguetesFavorito = juguetesFavorito unperro ++ "peine de goma" 
 }
 
 
 --funciones principales
 jugar :: Float -> Perro -> Perro
 jugar _ unperro = unperro{
-energia = cambiarenergia 10 energia unperro 
+energia = cambiarenergia 10 (energia unperro)    
 }
 
 ladrar :: Float -> Perro -> Perro 
@@ -60,7 +60,7 @@ energia = cantidadladridos / 2
 
 regalar :: String -> Perro -> Perro
 regalar juguete unperro= unperro {
-juguetesFavorito = juguete ++ [juguetesFavorito]    
+juguetesFavorito = juguetesFavorito unperro ++ [juguete]    
 }
 
 diaDeSpa :: Perro -> Perro
@@ -70,7 +70,7 @@ diaDeSpa unperro
 
 diaDeCampo :: Perro -> Perro
 diaDeCampo unperro = unperro {
-    juguetesFavorito = drop 1 juguetesFavorito
+juguetesFavorito = drop 1 (juguetesFavorito unperro)
 }      
 
 --PARTEB
