@@ -12,12 +12,7 @@ data Perro = UnPerro{
     energia :: Float
     }
 
-data Guarderia= UnaGuarderia{
-    nombre :: String,
-    rutina :: ([String],[Int])
-}
 
---modelado
 zara :: Perro
 zara = UnPerro{
 raza = "dalmata",
@@ -25,6 +20,13 @@ juguetesFavorito = ["pelota","mantita"],
 tiempo = 90,
 energia = 80 
 }
+
+
+data Guarderia= UnaGuarderia{
+    nombre :: String,
+    rutina :: ([String],[Int])
+}
+
 
 guarderia :: Guarderia 
 guarderia = UnaGuarderia{
@@ -71,14 +73,12 @@ diaDeCampo unperro = unperro {
 juguetesFavorito = drop 1 (juguetesFavorito unperro)
 }      
 
---PARTEB 
+--PARTE B 
+estaEnGuarderia :: Guarderia -> Perro -> Bool 
+estaEnGuarderia unaguarderia unperro = tiempo unperro >= sum (snd  (rutina unaguarderia))
 
-estaEnGuarderia :: Guarderia -> Perro ->Bool 
-estaEnGuarderia unaguarderia unperro = (sum snd unaguarderia) >= tiempo unperro 
-
-
-perrosResponsables ::   Perro -> Bool 
-perrosResponsables unperro = length juguetesFavorito (diaDeCampo unperro) > 3 
+perrosResponsables :: Perro -> Bool 
+perrosResponsables unperro = length (juguetesFavorito (diaDeCampo unperro) )> 3 
 
 
 
