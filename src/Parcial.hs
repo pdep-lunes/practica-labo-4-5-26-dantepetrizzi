@@ -77,8 +77,8 @@ diaDeCampo unperro = unperro {
 estaEnGuarderia :: Guarderia -> Perro ->Bool
 estaEnGuarderia unaguarderia unperro = (sum snd unaguarderia) >= tiempo unperro
 
-perrosResponsables ::  
-perrosResponsables = 
+perrosResponsables ::   Perro -> Bool
+perrosResponsables unperro = length juguetesFavorito (diaDeCampo unperro) > 3
 
 
 
