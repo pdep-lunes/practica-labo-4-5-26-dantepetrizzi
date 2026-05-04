@@ -6,15 +6,15 @@ doble = (*2)
 
 --datas
 data Perro = UnPerro{
-raza :: String,
-juguetesFavorito :: [String],
-tiempo :: Int,
-energia :: Float
-}
+    raza :: String,
+    juguetesFavorito :: [String],
+    tiempo :: Int,
+    energia :: Float
+    }
 
 data Guarderia= UnaGuarderia{
-nombre :: String,
-rutina :: ([String],[Int])
+    nombre :: String,
+    rutina :: ([String],[Int])
 }
 
 --modelado
@@ -33,8 +33,8 @@ guarderia = UnaGuarderia{
 }
 
 --funciones auxiliares
-cambiarenergia :: Float -> Perro -> Perro
-cambiarenergia numero unperro  = unperro{
+cambiarEnergia :: Float -> Perro -> Perro
+cambiarEnergia numero unperro  = unperro{
     energia = max (numero + energia unperro) 0 
 }  
 
@@ -43,19 +43,17 @@ listaextravagante = ["dalmata","pomerania"]
 ponerEn100EnergiaYRegalarJuguete :: Perro -> Perro
 ponerEn100EnergiaYRegalarJuguete unperro = unperro {
 energia = 100,
-juguetesFavorito = juguetesFavorito unperro ++ "peine de goma" 
+juguetesFavorito = juguetesFavorito unperro ++ ["peine de goma"] 
 }
 
 
 --funciones principales
 jugar :: Float -> Perro -> Perro
-jugar _ unperro = unperro{
-energia = cambiarenergia 10 (energia unperro)    
-}
+jugar 1 unperro = cambiarEnergia (-10) unperro
 
 ladrar :: Float -> Perro -> Perro 
 ladrar cantidadladridos unperro = unperro{
-energia = cantidadladridos / 2 
+energia = max 0 (cantidadladridos /2) 
 }
 
 regalar :: String -> Perro -> Perro
@@ -73,13 +71,14 @@ diaDeCampo unperro = unperro {
 juguetesFavorito = drop 1 (juguetesFavorito unperro)
 }      
 
---PARTEB
-estaEnGuarderia :: Guarderia -> Perro ->Bool
-estaEnGuarderia unaguarderia unperro = (sum snd unaguarderia) >= tiempo unperro
+--PARTEB 
 
-perrosResponsables ::   Perro -> Bool
-perrosResponsables unperro = length juguetesFavorito (diaDeCampo unperro) > 3
+estaEnGuarderia :: Guarderia -> Perro ->Bool 
+estaEnGuarderia unaguarderia unperro = (sum snd unaguarderia) >= tiempo unperro 
 
+
+perrosResponsables ::   Perro -> Bool 
+perrosResponsables unperro = length juguetesFavorito (diaDeCampo unperro) > 3 
 
 
 
