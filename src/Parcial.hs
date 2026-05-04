@@ -5,30 +5,30 @@ doble :: Int -> Int
 doble = (*2)
 
 --datas
-data Perro{
+data Perro = UnPerro{
 raza :: String,
 juguetesFavorito :: [String],
 tiempo :: Int,
 energia :: Float
 }
 
-data Guarderia{
-nombre :: String
+data Guarderia= UnaGuarderia{
+nombre :: String,
 rutina :: ([String],[Int])
 }
 
 --modelado
 zara :: Perro
-zara = unperro{
+zara = UnPerro{
 raza = "dalmata",
 juguetesFavorito = ["pelota","mantita"],
 tiempo = 90,
 energia = 80 
 }
 
-GuarderiaPdePerritos  :: guarderia
-GuarderiaPdePerritos {
-    nombre = "GuarderíaPdePerritos"
+guarderia :: Guarderia 
+guarderia = UnaGuarderia{
+    nombre = "GuarderíaPdePerritos",
     rutina = (["Jugar","Ladrar 18","Regalar pelota","Día de spa","Día de campo"],[30,20,0,120,720])
 }
 
@@ -41,9 +41,9 @@ cambiarenergia numero unperro  = unperro{
 listaextravagante = ["dalmata","pomerania"]
 
 ponerEn100EnergiaYRegalarJuguete :: Perro -> Perro
-pornerEn100EnergiaYRegalarJuguete unperro = unperro {
-energia = 100
-juguetesFavorito =  unperro { juguetesFavorito unperro = juguetesFavorito unperro ++ "peine de goma” }
+ponerEn100EnergiaYRegalarJuguete unperro = unperro {
+energia = 100,
+juguetesFavorito =  unperro { juguetesFavorito = juguetesFavorito unperro ++ "peine de goma" }
 }
 
 
