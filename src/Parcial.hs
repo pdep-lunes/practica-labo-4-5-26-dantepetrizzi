@@ -65,7 +65,7 @@ juguetesFavorito = juguetesFavorito unperro ++ [juguete]
 
 diaDeSpa :: Perro -> Perro
 diaDeSpa unperro 
-    |tiempo unperro >= 50  || elem (raza unperro) listaextravagante = ponerEn100EnergiaYRegalarJuguete unperro
+    |tiempo unperro >= 50  || (elem . raza) unperro listaextravagante = ponerEn100EnergiaYRegalarJuguete unperro
     |otherwise = unperro
 
 diaDeCampo :: Perro -> Perro
@@ -75,10 +75,10 @@ juguetesFavorito = drop 1 (juguetesFavorito unperro)
 
 --PARTE B 
 estaEnGuarderia :: Guarderia -> Perro -> Bool 
-estaEnGuarderia unaguarderia unperro = tiempo unperro >= sum (snd  (rutina unaguarderia))
+estaEnGuarderia unaguarderia unperro = tiempo unperro >= (sum . snd . rutina) unaguarderia
 
 perrosResponsables :: Perro -> Bool 
-perrosResponsables unperro = length (juguetesFavorito (diaDeCampo unperro) )> 3 
+perrosResponsables unperro = (length . juguetesFavorito .diaDeCampo) unperro > 3 
 
 
 
